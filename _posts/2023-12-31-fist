@@ -1,0 +1,21 @@
+--- py
+layout: single
+title:  "천안시 날씨 데이터 분석"
+---
+
+import csv
+f = open ('cheonan20231231.csv')
+data = csv.reader (f)
+header = next (data)
+min_temp = 999
+min_date = ''
+for row in data:
+    if row[-2] == '':
+        row[-2] = 999 
+    row[-2] = float (row[-2])
+    if min_temp > row[-2]:
+        min_temp = row [-2]
+        min_date = row [0]
+f.close()
+
+print ("기상 관측 기록 이래 천안에서 가장 기온이 낮았던 날은", min_temp, "를 기록한", min_date + "입니다.")
